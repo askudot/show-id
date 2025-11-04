@@ -4,7 +4,7 @@
   "icon_url": "/icon.png",
   "start_url": "/",
   "splash_image_url": "/splash.png",
-  "splash_background_color": "#6200EA"
+  "splash_background_color": "#6200EA",
   
   "accountAssociation": {
     "header": "eyJmaWQiOjE4OTcxLCJ0eXBlIjoiYXV0aCIsImtleSI6IjB4RTRFNjYxQ2QwNEZiNmQ3MWQxRERlQTNEMjg4RWIwNTk1NWUwNzU3RCJ9",
