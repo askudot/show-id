@@ -14,22 +14,19 @@ export default function App() {
   const [msg, setMsg] = useState("Memuat…");
 
   useEffect(() => {
-    (async () => {
-      try {
-        const inMini = await sdk.isInMiniApp();
-        if (!inMini)
-          return setMsg("Buka dari Farcaster/Base, bukan dari browser.");
+  (async () => {
+    const inMini = await sdk.isInMiniApp();
+    if (!inMini) return setMsg("Buka dari Farcaster/Base, bukan browser.");
 
-        const ctx = await sdk.context;
-        setUser(ctx.user);
+    const ctx = await sdk.context;
+    setUser(ctx.user);
 
-        await sdk.actions.setTitle?.("Profil Saya");
-        await sdk.actions.ready(); // sembunyikan splash
-      } catch (e: any) {
-        setMsg("ERROR: " + e.message);
-      }
-    })();
-  }, []);
+    // ⬇️ Fix TypeScript: cast supaya Vercel build gak error
+    await (sdk as any).actions?.setTitle?.("Profil Saya");
+    await (sdk as any).actions?.ready?.(); // tutup splash
+  })().catch((e) => setMsg("ERROR: " + e.message));
+}, []);
+
 
   if (!user)
     return <div style={{ padding: 20, textAlign: "center" }}>{msg}</div>;
